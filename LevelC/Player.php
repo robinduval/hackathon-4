@@ -20,9 +20,18 @@ class Player
 
     public function getSteps($partOfTheTrack, $context)
     {
-        //var_dump($context);
-        $instruction = "MMSMM";
-        // @TODO
+        $maxPos = strlen($partOfTheTrack);
+        $res = $maxPos;
+
+        if (5 === $maxPos) {
+            for ($nextPos = 0; $nextPos < $maxPos; ++$nextPos) {
+                if ('_' === $partOfTheTrack[$nextPos]) {
+                    $res = $nextPos;
+                }
+            }
+        }
+        $instruction = str_repeat('M', $res).str_repeat('S', 5);
+
         return $instruction;
     }
 };
